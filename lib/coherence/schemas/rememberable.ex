@@ -15,7 +15,7 @@ defmodule Coherence.Rememberable do
         series = gen_series()
         token = gen_token()
 
-        query = from q in Rememberable, where: q.user_id == ^user.ids, limit: 1
+        query = from q in Rememberable, where: q.user_id == ^user.id, limit: 1
 
         rememberable = Coherence.Config.repo().one(query) || %Rememberable{}
 
