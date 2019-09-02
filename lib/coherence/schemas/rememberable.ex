@@ -22,7 +22,7 @@ defmodule Coherence.Rememberable do
         changeset =
           changeset(rememberable, %{
             token_created_at: created_at(),
-            user_id: user.ids,
+            user_id: user.id,
             series_hash: hash(series),
             token_hash: hash(token)
           })
