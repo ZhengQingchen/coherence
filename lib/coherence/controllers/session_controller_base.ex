@@ -412,7 +412,7 @@ defmodule Coherence.SessionControllerBase do
 
       def save_rememberable(conn, user, _) do
         {changeset, series, token} = schema(Rememberable).create_login(user)
-        Config.repo().insert!(changeset)
+        Config.repo().insert_or_update!(changeset)
 
         opts = [
           login_key: Config.login_cookie(),

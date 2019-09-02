@@ -15,10 +15,14 @@ defmodule Coherence.Rememberable do
         series = gen_series()
         token = gen_token()
 
+        query = from q in Rememberable, where: q.user_id == ^user.ids, limit: 1
+
+        rememberable = Coherence.Config.repo().one(query) || %Rememberable{}
+
         changeset =
-          changeset(%Rememberable{}, %{
+          changeset(rememberable, %{
             token_created_at: created_at(),
-            user_id: user.id,
+            user_id: user.ids,
             series_hash: hash(series),
             token_hash: hash(token)
           })
